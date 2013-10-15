@@ -86,7 +86,10 @@ module PivotalTracker
     end
 
     def upload_attachment(filename)
-      Attachment.parse(Client.connection["/projects/#{project_id}/stories/#{id}/attachments"].post(:Filedata => File.new(filename)))
+      # Attachment.parse(Client.connection["/projects/#{project_id}/stories/#{id}/attachments"].post(:Filedata => File.new(filename)))
+      a = Client.connection["/projects/#{project_id}/uploads"].post(:file => File.new(filename))
+      p a
+      # Attachment.parse(a)
     end
 
     def move_to_project(new_project)
